@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" fx:controller="br.com.app.kardex.controller.logistica.fx_produtoController" >
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  styleClass="panel_menu" >
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <Button fx:id="btnInc" text="Novo" onAction="#Cadastro" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/incluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnAlt" text="Alterar" onAction="#Alterar" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/Alterar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnExc" text="Excluir" onAction="#Excluir" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/excluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <TextField fx:id="txtPesquisar" GridPane.columnIndex="3" GridPane.rowIndex="0" prefWidth="150" maxWidth="150" />   
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabela">
+            <columns>
+                <TableColumn fx:id="colCod" text="Codigo" prefWidth="100" />
+                <TableColumn fx:id="colSigla" text="Sigla" prefWidth="100" />
+                <TableColumn fx:id="colDescricao" text="Descrição" prefWidth="300" />
+                <TableColumn fx:id="colPesoBruto" text="Peso Bruto" prefWidth="100" />
+                <TableColumn fx:id="colCamara" text="Câmara" prefWidth="100" />
+                <TableColumn fx:id="colShelf" text="Shelf" prefWidth="100" />
+                <TableColumn fx:id="colLastro" text="Lastro" prefWidth="100" />
+                <TableColumn fx:id="colAltura" text="Altura" prefWidth="100" />
+                <TableColumn fx:id="colCxsPallet" text="Cxs Pallet" prefWidth="100" />
+                <TableColumn fx:id="colPesoLiq" text="Peso Liq." prefWidth="100" />
+                <TableColumn fx:id="colImpPeso" text="Imprimir Peso" prefWidth="150" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <GridPane styleClass="form"  fx:id="paneCad"  hgap="10" vgap="10" prefWidth="450" alignment="TOP_RIGHT">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Cadastro Produto" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1" >
+                <Button text="" onAction="#Cancelar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1" GridPane.columnSpan="2" >
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            
+            <Label text="*Codigo:" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtCod" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="70" maxWidth="70"   />
+            
+            <Label text="*Sigla:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtSigla" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70" maxWidth="70"/>
+            
+            <Label text="*Descrição:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"  />
+            <TextField fx:id="txtDescricao" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="300" maxWidth="300"/>
+            
+            <Label text="*Peso Bruto:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtPesoBruto" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="100" maxWidth="100"/>
+            
+            <Label text="*Câmara:" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtCamara" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="100" maxWidth="100"/>
+            
+            <Label text="*Shelf:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtShelf" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="70" maxWidth="70"/>
+            
+            <Label text="Lastro:" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtLastro" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="150" maxWidth="150"/>
+            
+            <Label text="Altura:" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtAltura" GridPane.columnIndex="1" GridPane.rowIndex="7" prefWidth="150" maxWidth="150"/>
+            
+            <Label text="CxsPallet:" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtCxsPallet" GridPane.columnIndex="1" GridPane.rowIndex="8" prefWidth="150" maxWidth="150"/>
+            
+            <Label text="*Peso Liq:" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtPesoLiq" GridPane.columnIndex="1" GridPane.rowIndex="9" prefWidth="100" maxWidth="100"/>
+            
+            <Label text="ImpPeso:" GridPane.columnIndex="0" GridPane.rowIndex="10" GridPane.halignment="RIGHT"/>
+            <CheckBox fx:id="txtImpPeso" GridPane.columnIndex="1" GridPane.rowIndex="10"  />
+            
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="11" GridPane.columnSpan="2">   
+                <Button fx:id="btnGravar" text="Gravar" onAction="#Gravar" />
+                <Button fx:id="btnCancel" text="Limpar" onAction="#Limpar" />
+            </HBox>
+            <HBox styleClass="msg" fx:id="msgProgressBox" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="12" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ProgressIndicator fx:id="progress"  prefWidth="20" prefHeight="20" />
+                <Label fx:id="msgProgress" text="Processando..." />
+            </HBox>
+            <HBox styleClass="msg" fx:id="msgErrorBox" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="12" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                    <Image url="/br.com.app.kardex/icons/error.png"/>
+                </ImageView>
+                <Label fx:id="msgError" text="Não foi possivel cadastrar!" />
+            </HBox>
+            <HBox styleClass="msg" fx:id="msgConfBox" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="12" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                    <Image url="/br.com.app.kardex/icons/Confirmado.png"/>
+                </ImageView>
+                <Label fx:id="msgConf" text="Cadastrado com sucesso!" />
+            </HBox>
+        </GridPane> 
+        </GridPane>
+    </right>
+</BorderPane>

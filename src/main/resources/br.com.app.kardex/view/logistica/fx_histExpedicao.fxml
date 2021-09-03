@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" fx:controller="br.com.app.kardex.controller.logistica.fx_histExpedicaoController" >
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  styleClass="panel_menu"   >
+            <padding>
+                <Insets left="15" right="15" top="10" bottom="0" />
+            </padding>
+            <Button text="Atualizar" onAction="#Atualizar"  disable="false" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2"  styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/atualizar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button text="Alterar" disable="true" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/Alterar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button text="Excluir" disable="true" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="btn">
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/excluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Label styleClass="barraseparador" text="Movimento" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+            
+            <ImageView GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                <Image url="/br.com.app.kardex/icons/separador2.png"/>
+            </ImageView>
+            
+            <Label text="Pesquisar:"  GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.halignment="RIGHT"   />
+            <TextField fx:id="txtPesquisar" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+            <Label text="Status:"  GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.halignment="RIGHT"   />
+            <ComboBox fx:id="cbStatus" GridPane.columnIndex="5" GridPane.rowIndex="1" prefWidth="100"  />
+            <Label styleClass="barraseparador" text="Filtro" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+            
+        </GridPane>
+    </top>
+    <center>
+        <TableView  fx:id="tabelaFat" >
+            <columns>
+                <TableColumn fx:id="colFatViagem" text="Viagem" prefWidth="100" />
+                <TableColumn fx:id="colFatPlaca" text="Placa" prefWidth="100" />
+                <TableColumn fx:id="colFatCodPro" text="Produto" prefWidth="100" />
+                <TableColumn fx:id="colFatDescPro" text="Descrição" prefWidth="300" />
+                <TableColumn fx:id="colFatQtd" text="Qtd" prefWidth="100" />
+                <TableColumn fx:id="colFatUnd" text="Unidade" prefWidth="100" />
+                <TableColumn fx:id="colFatPeso" text="Peso Bruto" prefWidth="100" />
+                <TableColumn fx:id="colFatNota" text="Nota" prefWidth="100" />
+                <TableColumn fx:id="colFatData" text="Data Expedição" prefWidth="100" />
+                <TableColumn fx:id="colFatStatus" text="Status" prefWidth="100" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

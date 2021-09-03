@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import br.com.app.kardex.util.KTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="paneMain" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.app.kardex.controller.expedicao.fxml_expedicaoController">
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  styleClass="panel_menu" >
+            <padding>
+                <Insets left="15" right="15" top="10" bottom="0" />
+            </padding>
+
+            <Button fx:id="btnAlterar" onAction="#onBtnAlterar" text="Alterar" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/Alterar.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button fx:id="btnExcluir" onAction="#onBtnExcluir" text="Excluir" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/excluir.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button text="Importar" onAction="#onBtnImpPedidos" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/importar.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button fx:id="btnEncerrar" text="Encerrar" onAction="#onBtnEncerrar" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/check.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Label styleClass="barraseparador" text="Carga" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+
+            <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                <Image url="/br.com.app.kardex/icons/separador2.png"/>
+            </ImageView>
+
+            <Label text="Pesquisar:" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="RIGHT"  />
+            <TextField fx:id="txtPesquisar" GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.columnSpan="3"/>
+
+            <Label text="Departamento:" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.halignment="RIGHT"  />
+            <ComboBox fx:id="cbDepFiltro" GridPane.columnIndex="4" GridPane.rowIndex="1" prefWidth="150" maxWidth="150"/>
+
+            <Label text="Data:" GridPane.columnIndex="5" GridPane.rowIndex="1" GridPane.halignment="RIGHT"  />
+            <DatePicker fx:id="dtFiltro" GridPane.columnIndex="6" GridPane.rowIndex="1" prefWidth="120" maxWidth="150"/>
+
+            <Label styleClass="barraseparador"  text="Filtros" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+        </GridPane>
+    </top>
+    <center>
+        <AnchorPane fx:id="anchorPane">
+            <TableView fx:id="tblExpedicao" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <columns>
+                    <TableColumn text="Cod. carga" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="idcarga" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Descrição" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="descricao" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Placa" prefWidth="100">
+                        <cellValueFactory><PropertyValueFactory property="placa" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Dt Lançamento" prefWidth="120" >
+                        <cellValueFactory><PropertyValueFactory property="dtlancamento" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Data da Carga" prefWidth="100" >
+                        <cellValueFactory><PropertyValueFactory property="dtcarga" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Volume" prefWidth="100" >
+                        <cellValueFactory><PropertyValueFactory property="volume" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Volume Cortado" prefWidth="100" >
+                        <cellValueFactory><PropertyValueFactory property="volume_corte" /></cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Status" prefWidth="100" >
+                        <cellValueFactory><PropertyValueFactory property="verifica" /></cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </AnchorPane>
+    </center>
+    <right>
+        <AnchorPane prefWidth="400" styleClass="form" fx:id="paneCad">
+            <AnchorPane styleClass="form_top" prefHeight="26" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <Label text="Importar carregamento" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="2.6" />
+                <Button AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0" prefHeight="4" styleClass="btn_fechar" onAction="#onFechar">
+                    <graphic>
+                        <ImageView fitWidth="10" fitHeight="10">
+                            <Image url="/br.com.app.kardex/icons/exitForm.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </AnchorPane>
+            <VBox fx:id="vBox" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="60.0">
+                <GridPane hgap="10" vgap="10" prefWidth="600">
+                    <padding>
+                        <Insets left="25" right="25" top="25" bottom="25" />
+                    </padding>
+
+                    <Label text="Dt Carregamento:" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="RIGHT"/>
+                    <DatePicker fx:id="dtFaturamento" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="120"/>
+
+                    <Label text="Modelo:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+                    <ComboBox fx:id="cbModelo" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2"/>
+
+                    <Label text="Arquivo:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+                    <KTextField fx:id="txtArquivo" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150" maxWidth="150"/>
+                    <Button fx:id="btnSelecionar" text="Selecionar" onAction="#onSelecionar" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+                </GridPane>
+            </VBox>
+
+            <Button fx:id="btnImportar" onAction="#onImportar" text="IMPORTAR" prefHeight="40.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"/>
+        </AnchorPane>
+
+        <AnchorPane prefWidth="700" styleClass="form" fx:id="paneCarga">
+            <AnchorPane styleClass="form_top" prefHeight="26" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <Label text="Carregamento" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="2.6" />
+                <Button AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0" prefHeight="4" styleClass="btn_fechar" onAction="#onFechar">
+                    <graphic>
+                        <ImageView fitWidth="10" fitHeight="10">
+                            <Image url="/br.com.app.kardex/icons/exitForm.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </AnchorPane>
+
+            <TabPane styleClass="tabSegudario" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="60.0">
+                <tabs>
+                    <Tab fx:id="tabCarga" text="Carga    ">
+                        <GridPane hgap="10" vgap="10" prefWidth="600" >
+                            <padding>
+                                <Insets left="25" right="25" top="25" bottom="25" />
+                            </padding>
+                            <Label text="Cod. Carga:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT" />
+                            <KTextField fx:id="txtIdCarga" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70" maxWidth="70" />
+
+                            <Label text="*Dt Descarga:" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+                            <DatePicker fx:id="dtDescarga" GridPane.columnIndex="3" GridPane.rowIndex="1" prefWidth="110"/>
+
+                            <Label text="Filial:" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+                            <ComboBox fx:id="cbFilial" disable="true" GridPane.columnIndex="5" GridPane.rowIndex="1" prefWidth="100"/>
+
+                            <Label text="*Descrição:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtDescricao" upperCase="true" required="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.columnSpan="3" prefWidth="300"/>
+
+                            <Label text="*Departamento:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+                            <ComboBox fx:id="cbDepartamento" GridPane.columnIndex="5" GridPane.rowIndex="2" prefWidth="140"/>
+
+                            <Label text="Placa:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtPlaca" upperCase="true" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="70"/>
+
+                            <Label text="Transportadora:" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtTransportadora" upperCase="true" GridPane.columnIndex="3" GridPane.rowIndex="3" prefWidth="130" />
+
+                            <Label text="Motorista:" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtMotorista" upperCase="true" GridPane.columnIndex="5" GridPane.rowIndex="3" prefWidth="130" />
+
+                            <HBox GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="6" spacing="5" >
+                                <padding>
+                                    <Insets left="25" right="25" top="0" bottom="0" />
+                                </padding>
+                                <Button fx:id="btnImportarXml" text="Incluir pedido" />
+                                <Button fx:id="btnExcluirNota" onAction="#onBtnExcluirPed" text="Excluir pedido" />
+                                <Button fx:id="btnCancelarNota" onAction="#onBtnCancelarPed" text="Cancelar pedido" />
+                                <Button fx:id="btnVisualizarMapa" onAction="#onBtnVisualizarMapa" text="Visualizar Mapa" />
+                                <Button fx:id="btnImprimirMapa" onAction="#onBtnImprimirMapa" text="Imprimir Mapa" />
+                            </HBox>
+
+
+                            <TableView fx:id="tblNotas" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="6" prefWidth="650">
+                                <columns>
+                                    <TableColumn text="Num. Pedido">
+                                        <cellValueFactory><PropertyValueFactory property="numpedido" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Num. Auxiliar">
+                                        <cellValueFactory><PropertyValueFactory property="numauxiliar" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Dt pedido">
+                                        <cellValueFactory><PropertyValueFactory property="dtemissao" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Observação" prefWidth="200">
+                                        <cellValueFactory><PropertyValueFactory property="obs" /></cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                            </TableView>
+
+                        </GridPane>
+                    </Tab>
+                    <Tab fx:id="tabNota" text="Pedido     ">
+                        <GridPane hgap="10" vgap="10" prefWidth="600">
+                            <padding>
+                                <Insets left="25" right="25" top="25" bottom="25" />
+                            </padding>
+                            <Label text="Numero NF:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+                            <TextField fx:id="txtNumero" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70" maxWidth="70"   />
+
+                            <Label text="Obs Nota:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+                            <TextArea fx:id="txtObsNf" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="300" maxWidth="300" prefHeight="50"/>
+
+
+                            <TableView fx:id="tblItens" editable="false" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2" prefWidth="600">
+                                <columns>
+                                    <TableColumn text="Codigo">
+                                        <cellValueFactory><PropertyValueFactory property="idproduto" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Cod. Fabrica">
+                                        <cellValueFactory><PropertyValueFactory property="codfabrica" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Descrição">
+                                        <cellValueFactory><PropertyValueFactory property="descricao" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Unidade">
+                                        <cellValueFactory><PropertyValueFactory property="unidade" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="colQtdCx" text="Qtd Cxs">
+                                        <cellValueFactory><PropertyValueFactory property="qtdcx" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="colQtdCxCorte" text="Qtd Cxs Corte">
+                                        <cellValueFactory><PropertyValueFactory property="qtdcx_corte" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="colPeso" text="Peso">
+                                        <cellValueFactory><PropertyValueFactory property="peso" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Preço Un.">
+                                        <cellValueFactory><PropertyValueFactory property="prunitliq" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Valor Total">
+                                        <cellValueFactory><PropertyValueFactory property="valorliq" /></cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                            </TableView>
+
+                        </GridPane>
+                    </Tab>
+                    <Tab fx:id="tabConferencia"  text="Corte      ">
+                        <GridPane hgap="10" vgap="10" prefWidth="600">
+                            <padding>
+                                <Insets left="25" right="25" top="15" bottom="5" />
+                            </padding>
+
+                            <Label text="*Produto:" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtProdutoLote" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="70" />
+
+                            <Label text="*Qtd Cx:" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtQtdCxLote" GridPane.columnIndex="3" GridPane.rowIndex="4" prefWidth="70"   />
+
+                            <Label text="*Peso:" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtQtdProdLote" GridPane.columnIndex="5" GridPane.rowIndex="4" prefWidth="70"  />
+
+                            <Label text="*Num. Lote:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+                            <KTextField fx:id="txtNumlote" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="70"  />
+
+                            <Label text="*Fabricação:" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+                            <DatePicker fx:id="dtFabLote" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="5" prefWidth="150"  />
+
+                            <Label text="*Vencimento:" GridPane.columnIndex="4" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+                            <DatePicker fx:id="dtVencLote" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="5" prefWidth="150"   />
+
+                            <Label text="Obs Lote:" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="RIGHT"/>
+                            <TextArea fx:id="txtObsLote" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.columnSpan="3" GridPane.rowSpan="2" prefHeight="50"/>
+
+                            <CheckBox fx:id="checkAvariado" visible="false" text="Avariado?" GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER"/>
+
+                            <Button fx:id="btnIncluirLote" onAction="#onBtnAlteraLote" text="Alterar" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.halignment="CENTER"/>
+                            <Button fx:id="btnExcluirLote" text="Cortar" onAction="#onBtnCortarLote" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.halignment="CENTER" />
+
+                            <Button fx:id="btnSalvarLote" onAction="#onBtnSalvarLote" text="Salvar" GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.halignment="CENTER"/>
+                            <Button fx:id="btnCancelar" onAction="#onBtnCancelar" text="Cancelar" GridPane.columnIndex="1" GridPane.rowIndex="7" GridPane.halignment="CENTER" />
+
+                            <TableView fx:id="tblLotes" editable="true" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="6" >
+                                <columns>
+                                    <TableColumn text="Codigo">
+                                        <cellValueFactory><PropertyValueFactory property="idproduto" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Cod. Frabica">
+                                        <cellValueFactory><PropertyValueFactory property="codfabrica" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Descrição">
+                                        <cellValueFactory><PropertyValueFactory property="descricao" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Qtdcx">
+                                        <cellValueFactory><PropertyValueFactory property="qtdcx" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Peso">
+                                        <cellValueFactory><PropertyValueFactory property="qtdprod" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Fabricação">
+                                        <cellValueFactory><PropertyValueFactory property="dtfabricacao" /></cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn text="Vencimento">
+                                        <cellValueFactory><PropertyValueFactory property="dtvencimento" /></cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                            </TableView>
+                        </GridPane>
+                    </Tab>
+                </tabs>
+            </TabPane>
+            <Button fx:id="btnSalvar" onAction="#onBtnSalvarCarga" text="SALVAR" prefHeight="40.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"/>
+        </AnchorPane>
+    </right>
+
+</BorderPane>

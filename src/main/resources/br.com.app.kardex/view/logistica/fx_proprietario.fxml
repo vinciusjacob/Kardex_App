@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" fx:controller="br.com.app.kardex.controller.logistica.fx_proprietarioController" >
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  >
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <Button fx:id="btnInc" text="Incluir" disable="true" onAction="#Cadastro" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/incluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnAlt" text="Alterar" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/Alterar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnExc" text="Excluir" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/excluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabela">
+            <columns>
+                <TableColumn fx:id="colCod" text="Codigo" prefWidth="100" />
+                <TableColumn fx:id="colRs" text="Razão Social" prefWidth="300" />
+                <TableColumn fx:id="colNf" text="Nome Fantasia" prefWidth="300" />
+                <TableColumn fx:id="colCnpj" text="CNPJ" prefWidth="120" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <GridPane fx:id="paneCad"  hgap="10" vgap="10" prefWidth="600">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">   
+                <Button fx:id="btnGravar" text="Gravar"  />
+                <Button fx:id="btnCancel" text="Cancelar" onAction="#Cancelar" />
+            </HBox>
+            <Label text="Codigo:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtCod" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="70" maxWidth="70"   />
+            
+            <Label text="Razão Social:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtRazao" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="300" maxWidth="300"/>
+            
+            <Label text="Nome Fantasia:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"  />
+            <TextField fx:id="txtFantasia" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="300" maxWidth="300"/>
+            
+            <Label text="CNPJ:" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtCnpj" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="150" maxWidth="150"/>
+            
+            <Label text="Desativado:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+            <CheckBox GridPane.columnIndex="1" GridPane.rowIndex="5"  />
+            
+        </GridPane>
+    </right>
+</BorderPane>

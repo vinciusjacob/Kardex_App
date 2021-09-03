@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:id="pane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.app.kardex.controller.logistica.fx_devolucaoController">
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  >
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <Button text="Incluir" onAction="#Incluir"  GridPane.columnIndex="0" GridPane.rowIndex="0"   />
+            <Button text="Conferencia" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0"   />
+            <Button text="Exportar" disable="true" GridPane.columnIndex="2" GridPane.rowIndex="0"   />
+            <Label text="Data:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"  />
+            <ComboBox GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2"  prefWidth="110" maxWidth="110"/>
+            <Label text="Placa:" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.halignment="RIGHT"  />
+            <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.columnSpan="2"  prefWidth="110" maxWidth="110"/>
+        </GridPane>
+    </top>
+    <center>
+        <TableView>
+            <columns>
+                <TableColumn text="Viagem" prefWidth="100" />
+                <TableColumn text="Placa" prefWidth="100" />
+                <TableColumn text="Volume" prefWidth="100" />
+                <TableColumn text="Peso Bruto" prefWidth="100" />
+                <TableColumn text="Status" prefWidth="150" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <GridPane fx:id="paneIncluir"  hgap="10" vgap="10" prefWidth="600">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">   
+                <Button text="Gravar"  />
+                <Button text="Cancelar" onAction="#Cancelar" />
+            </HBox>
+            <Label text="Placa:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2"  prefWidth="200" maxWidth="200"   />
+            
+            <Label text="Data:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" maxWidth="200"/>
+        </GridPane>
+    </right>
+</BorderPane>

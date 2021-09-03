@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.app.kardex.controller.cadastros.fxml_posicaoController">
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  styleClass="panel_menu" >
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <Button fx:id="btnAtualizar" text="Atualizar" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/atualizar.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <TextField fx:id="txtPesquisar" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="150" maxWidth="150" />
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabela">
+            <columns>
+                <TableColumn text="Id" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="idposicao" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Camara" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="camara" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Rua" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="rua" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Bloco" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="bloco" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Nivel" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="nivel" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Apartamento" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="apartamento" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Temperatura" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="temperatura" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Tipo" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="tipo_posicao" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Estrutura" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="estrutura" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Cliente" prefWidth="100">
+
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" fx:controller="br.com.app.kardex.controller.logistica.fx_faturamentoController" >
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70" styleClass="panel_menu"  >
+            <padding>
+                <Insets left="15" right="15" top="10" bottom="0" />
+            </padding>
+            <Button text="Importar" onAction="#pImportar" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="btn">
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/importar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnExportar" text="Exportar" onAction="#saveFile"  disable="true" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="btn">
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/exportar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button text="Montar Carga" onAction="#pMontCarga"  GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/check.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnExcluir" text="Excluir" onAction="#ExcluirEsc"  disable="true" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="btn">
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/excluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Label styleClass="barraseparador" text="Movimento" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+            
+            <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                <Image url="/br.com.app.kardex/icons/separador2.png"/>
+            </ImageView>
+            
+            <Button text="Depara" onAction="#pDepara" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/depara.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnNf" text="Nota Fiscal" disable="true" onAction="#pNfs"  GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/notas.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Label text="Data:" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.halignment="RIGHT"  />
+            <DatePicker fx:id="dpData" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.columnSpan="2"  prefWidth="110" maxWidth="110"/>
+            <Label styleClass="barraseparador" text="Consulta" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+            
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabelaEscala">
+            <columns>
+                <TableColumn fx:id="colPlacaEsc" text="Placa" prefWidth="100" />
+                <TableColumn fx:id="colDataEsc" text="Data Expedição" prefWidth="150" />
+                <TableColumn fx:id="colQtdEsc" text="Qtd Nota" prefWidth="100" />
+                <TableColumn fx:id="colPesoEsc" text="Peso Bruto" prefWidth="100" />
+                <TableColumn fx:id="colVolEsc" text="Volume" prefWidth="100" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        
+        <GridPane styleClass="form" fx:id="paneImportar"  hgap="10" vgap="10" prefWidth="450">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Importar Arquivo" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1"  >
+                <Button text="" onAction="#Cancelar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">   
+                <Button fx:id="btnImportar" text="Importar" onAction="#Importar"   />
+                <Button fx:id="btnCancelar" text="Cancelar" onAction="#Cancelar" />
+            </HBox>
+            <Label text="Titulo:" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtTitulo" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2"  prefWidth="300" maxWidth="300"   />
+            
+            <Label text="Arquivo:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtArquivo" editable="false"  GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" maxWidth="200"/>
+            <Button fx:id="btnSelecionar" onAction="#selectFile"  text="Selecionar" GridPane.columnIndex="2" GridPane.rowIndex="2"   />
+            
+            <ProgressIndicator fx:id="progress" visible="false"  GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label fx:id="progressText" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.halignment="CENTER"/>
+        </GridPane>
+        </GridPane>
+        
+        <GridPane styleClass="form" fx:id="paneMontCarga"  hgap="10" vgap="10" prefWidth="600">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Montar Carga" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1"  >
+                <Button text="" onAction="#Cancelar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2"  GridPane.columnSpan="2">   
+                <Button text="Gravar" onAction="#montCarg"  />
+                <Button text="Cancelar" onAction="#Cancelar" />
+            </HBox>
+            <Label text="Pesquisar:" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtPesquisar" GridPane.columnIndex="3" GridPane.rowIndex="0" prefWidth="150" maxWidth="150"   />
+            
+            <Label text="Selecionados" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <CheckBox fx:id="cbMarcados" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+        
+            <Label text="Placa:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtPlaca" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150" maxWidth="150"   />
+            
+            <Label text="Data Expedição:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+            <DatePicker fx:id="dpDtMont" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="110" maxWidth="110"/>
+            
+            <TableView fx:id="tabelaCarga"  GridPane.rowIndex="4" GridPane.columnSpan="4"  >
+                <columns>
+                    <TableColumn fx:id="colSelec" text="Selecionar" prefWidth="100" sortable="false"  style="-fx-alignment: CENTER;" />
+                    <TableColumn fx:id="colNf" text="Nota" prefWidth="150" />
+                    <TableColumn fx:id="colPeso"  text="Peso Bruto" prefWidth="100" />
+                    <TableColumn fx:id="colVol"  text="Volume" prefWidth="100" />
+                    <TableColumn fx:id="colStatus"  text="Status" prefWidth="100" />
+                </columns>
+            </TableView>
+            <HBox spacing="2"  alignment="TOP_LEFT" GridPane.halignment="LEFT"   GridPane.columnIndex="0" GridPane.rowIndex="5"  GridPane.columnSpan="4">   
+                <ProgressIndicator fx:id="progressEsc" visible="false" prefWidth="50" prefHeight="50"   />
+                <Label fx:id="msgCarg" text="" />
+            </HBox>
+        </GridPane>
+        </GridPane>
+        
+        <GridPane styleClass="form" fx:id="paneNfs"  hgap="10" vgap="10" prefWidth="600">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Notas Fiscais" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1"  >
+                <Button text="" onAction="#Cancelar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10" GridPane.rowIndex="0" GridPane.halignment="LEFT" >
+                <Button text="Salvar" onAction="#btnNfGravar" />
+            </HBox>
+            <Label text="Pesquisar:" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT"  /> 
+            <TextField fx:id="pesquisarNf" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TableView fx:id="tabelaNf" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="3"  >
+            <columns>
+                <TableColumn fx:id="colPlacaNf" text="Placa" prefWidth="70" />
+                <TableColumn fx:id="colDataNf" text="Data Expedição" prefWidth="100" />
+                <TableColumn fx:id="colNotaNf" text="Nota" prefWidth="70" />
+                <TableColumn fx:id="colPesoNf" text="Peso" prefWidth="70" />
+                <TableColumn fx:id="colVolumeNf" text="Volume" prefWidth="80" />
+                <TableColumn fx:id="colStatusNf" text="Status" prefWidth="100" />
+                <TableColumn fx:id="colNewDataNf" prefWidth="100" sortable="false"  style="-fx-alignment: CENTER;" >
+                    <graphic>
+                        <CheckBox fx:id="cbTabelaNf" text="Dt Nova"/>
+                    </graphic>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <HBox fx:id="HboxNfOk" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="2" GridPane.halignment="CENTER" GridPane.columnIndex="0" GridPane.columnSpan="3" >
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/Confirmado.png"/>
+                </ImageView>
+                <Label text="Salvo com sucesso!" />
+        </HBox>
+        </GridPane>
+        </GridPane>
+        
+        <GridPane styleClass="form" fx:id="paneDepara"  hgap="10" vgap="10" prefWidth="400" alignment="TOP_RIGHT">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Depara (Carregamento x Faturamento)" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1"  >
+                <Button text="" onAction="#Fechar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="TOP_LEFT" GridPane.halignment="LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3" >   
+                <Button text="Exportar Excel" onAction="#saveExcel"  GridPane.rowIndex="1" GridPane.columnIndex="5" GridPane.halignment="RIGHT" >
+                    <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/microsoft-excel.png"/>
+                    </ImageView>
+                    </graphic>
+               </Button>
+            </HBox>
+            <Label text="Data da Viagem:" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.halignment="RIGHT"   />
+            <DatePicker fx:id="txtPesquisarM" GridPane.rowIndex="1" GridPane.columnIndex="1"  prefWidth="110" maxWidth="110" />
+            <HBox styleClass="msg" fx:id="msgProgressBoxDep" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ProgressIndicator fx:id="progressDep"  prefWidth="20" prefHeight="20" />
+                <Label fx:id="msgProgress" text="Gerando relatorio..." />
+            </HBox>
+            <HBox styleClass="msg" fx:id="msgErrorBoxDep" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/error.png"/>
+                </ImageView>
+                <Label fx:id="msgErrorDep" text="Não foi possivel exportar!" />
+            </HBox>
+            <HBox styleClass="msg" fx:id="msgConfBoxDep" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/Confirmado.png"/>
+                </ImageView>
+                <Label fx:id="msgConfDep" text="Exportado com sucesso!" />
+            </HBox>
+            <TableView fx:id="tabelaDep" GridPane.rowIndex="3" GridPane.columnSpan="3" >
+            <columns>
+                <TableColumn style="-fx-alignment: CENTER;"  fx:id="colViagemDep" text="Viagem" prefWidth="150" />
+                <TableColumn sortable="false"  style="-fx-alignment: CENTER;"  fx:id="colExportarDep" text="" prefWidth="147">
+                    <graphic>
+                       <CheckBox text="Exportar"  fx:id="cbTabelaDep" /> 
+                    </graphic>
+                </TableColumn>
+            </columns>
+        </TableView>
+        </GridPane>
+        </GridPane>
+        
+        
+    </right>
+</BorderPane>

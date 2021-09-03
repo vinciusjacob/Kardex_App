@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+<?import java.net.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane"  fx:controller="br.com.app.kardex.controller.logistica.fx_carregamentoController" >
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70" styleClass="panel_menu"  >
+            <padding>
+                <Insets left="15" right="15" top="10" bottom="0" />
+            </padding>
+            <Button styleClass="btn" text="Importar" onAction="#pImportar"  GridPane.columnIndex="0" GridPane.rowIndex="0"  >
+                <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/importar.png"/>
+                </ImageView>
+                </graphic>
+            </Button>
+            <Button styleClass="btn" text="Imprimir" onAction="#pImprimir"  GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="CENTER"  >
+                <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/Imprimir.png"/>
+                </ImageView>
+                </graphic>
+            </Button>
+            <Button styleClass="btn" text="Exportar Excel" onAction="#saveExcel"  GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="2"  GridPane.valignment="CENTER" >
+                <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/microsoft-excel.png"/>
+                </ImageView>
+                </graphic>
+            </Button>
+            <Label styleClass="barraseparador" text="Movimento" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+            
+            <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                <Image url="/br.com.app.kardex/icons/separador2.png"/>
+            </ImageView>
+            
+            <Label text="Data:" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.halignment="RIGHT"  />
+            <DatePicker fx:id="dpData" GridPane.columnIndex="4" GridPane.rowIndex="1" prefWidth="110" maxWidth="110"/>
+            <ComboBox fx:id="cbTipo" GridPane.columnIndex="5" GridPane.rowIndex="1" prefWidth="90" maxWidth="90"/>
+            <Label text="Pesquisar:" GridPane.columnIndex="3" GridPane.rowIndex="0" GridPane.halignment="RIGHT"  />
+            <TextField fx:id="pesquisar" GridPane.columnIndex="4" GridPane.rowIndex="0" GridPane.columnSpan="2"  prefWidth="200" maxWidth="200"/>
+            <Label styleClass="barraseparador"  text="Filtros" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+           
+            
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabela">
+            <columns>
+                <TableColumn fx:id="colPlaca" text="Placa" prefWidth="100" />
+                <TableColumn fx:id="colNumero" text="Carregamento" prefWidth="100" />
+                <TableColumn fx:id="colData" text="Data Carregamento" prefWidth="120" />
+                <TableColumn fx:id="colCodProd" text="Codigo Produto" prefWidth="100" />
+                <TableColumn fx:id="colDescrProd" text="Descrição Produto" prefWidth="300" />
+                <TableColumn fx:id="colQtd" text="Volume" prefWidth="80" />
+                <TableColumn fx:id="colFab" text="Fabricação" prefWidth="100" />
+                <TableColumn fx:id="colReent" text="Dist/Reent" prefWidth="150" />
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="150" />
+                <TableColumn fx:id="colNota" text="Nota Fiscal" prefWidth="80" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <GridPane styleClass="form" fx:id="paneImportar"  hgap="10" vgap="10" prefWidth="460" GridPane.columnSpan="2" alignment="TOP_RIGHT">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Importar Arquivo" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1"  >
+                <Button text="" onAction="#Cancelar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1">
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">   
+                <Button fx:id="btnImportar" text="Importar" onAction="#btImportar"  />
+                <Button fx:id="btnCancelar" text="Cancelar" onAction="#Cancelar"   />
+            </HBox>
+            
+            <Label fx:id="lbTitulo" text="Titulo:" visible="false"  GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtTitulo" visible=""   GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.columnSpan="2"  prefWidth="300" maxWidth="300"/>
+            
+            <Label text="Arquivo:" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtArquivo" editable="false"  GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200" maxWidth="200"/>
+            <Button fx:id="btnSeleciona" text="Selecionar" onAction="#selectFile"   GridPane.columnIndex="2" GridPane.rowIndex="2"   />
+            
+            <Label text="Modelo TXT:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+            <ComboBox fx:id="cbTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200" maxWidth="200"/>
+            
+            <HBox fx:id="" visible="true" spacing="10" alignment="CENTER"  GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="3"  GridPane.halignment="CENTER">
+                <ProgressIndicator visible="false" fx:id="progress"  prefWidth="20" prefHeight="20" />
+                <Label fx:id="progressText" text="" />
+            </HBox>
+            <HBox visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="3"  GridPane.halignment="CENTER">
+                <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                    <Image url="/br.com.app.kardex/icons/error.png"/>
+                </ImageView>
+                <Label text="Não foi possivel realizar importação!" />
+            </HBox>
+            <HBox visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="3"  GridPane.halignment="CENTER">
+                <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                    <Image url="/br.com.app.kardex/icons/Confirmado.png"/>
+                </ImageView>
+                <Label text="Importado com sucesso!" />
+            </HBox>
+        </GridPane>
+        </GridPane>
+        
+        <GridPane styleClass="form" fx:id="paneImprimir"  hgap="10" vgap="10" prefWidth="310" alignment="TOP_RIGHT">
+            <padding>
+                <Insets left="5" right="5" top="5" bottom="5" />
+            </padding>
+            <Label styleClass="h2" text="Importar Arquivo" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="LEFT" GridPane.valignment="TOP"   />
+            <HBox spacing="10" alignment="TOP_RIGHT" GridPane.rowIndex="0" GridPane.columnIndex="1"  >
+                <Button text="" onAction="#Cancelar" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/close.png"/>
+                    </ImageView>
+                </graphic>
+                </Button>
+            </HBox> 
+        <GridPane hgap="10" vgap="10" GridPane.rowIndex="1" GridPane.columnSpan="2"  >
+            <padding>
+                <Insets left="25" right="25" top="25" bottom="25" />
+            </padding>
+            <HBox spacing="10"  alignment="CENTER"   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">   
+                <Button text="Imprimir" onAction="#btImprimir"  />
+                <Button text="Visualisar" onAction="#btVisualizar"  />
+                <Button text="Cancelar" onAction="#Cancelar"   />
+            </HBox>
+            
+            <Label text="Viagem:"  GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtViagem" GridPane.columnIndex="1" GridPane.rowIndex="1"  prefWidth="100" maxWidth="100"/>
+            
+            <Label text="Placa:"  GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtPlaca" GridPane.columnIndex="1" GridPane.rowIndex="2"  prefWidth="100" maxWidth="100"/>
+            
+            <Label text="Ordernar por:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.halignment="RIGHT"/>
+            <ComboBox fx:id="cbOrder" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="150" maxWidth="150" />
+            
+            <TableView visible="false"  fx:id="tabelaImp" prefWidth="152" maxWidth="152"  GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" >
+            <columns>
+                <TableColumn fx:id="colPlacaImp" prefWidth="150">
+                    <graphic>
+                        <CheckBox fx:id="cbImp" text="Placa Viagem"  />
+                    </graphic>
+                </TableColumn>
+            </columns>
+            </TableView>
+            
+            <CheckBox fx:id="chbData" text="Data Específica"  GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Label fx:id="lbParametro" visible="false"  text="Paramentro:" GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtParametro" visible="false" text="0,666666666"  GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="100" maxWidth="100"/>
+            
+            <HBox visible="true" spacing="10" alignment="CENTER"  GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="3"  GridPane.halignment="CENTER">
+                <ProgressIndicator visible="false"  prefWidth="20" prefHeight="20" />
+                <Label text="" />
+            </HBox>
+            <HBox fx:id="ImpHbosError" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="2"  GridPane.halignment="CENTER">
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/error.png"/>
+                </ImageView>
+                <Label fx:id="ImpLabelError" text="" />
+            </HBox>
+            <HBox visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="3"  GridPane.halignment="CENTER">
+                <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                    <Image url="/br.com.app.kardex/icons/Confirmado.png"/>
+                </ImageView>
+                <Label text="Importado com sucesso!" />
+            </HBox>
+        </GridPane>
+        </GridPane>
+    </right>
+    <stylesheets>
+       <URL value="@../../style/Estilo.css" />
+    </stylesheets>
+</BorderPane>

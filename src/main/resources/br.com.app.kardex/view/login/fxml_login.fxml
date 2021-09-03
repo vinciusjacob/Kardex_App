@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import br.com.app.kardex.util.KTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<GridPane prefWidth="400" prefHeight="300" alignment="CENTER" hgap="20" vgap="20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.app.kardex.controller.login.fxml_loginController">
+    <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
+
+    <Label text="Usuario:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <KTextField fx:id="txtUsuario" upperCase="true" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+    <Label text="Senha:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <PasswordField fx:id="txtSenha" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Button fx:id="btnLogar" onAction="#onLogar" text="LOGIN" prefWidth="210" prefHeight="30" GridPane.halignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2" />
+
+    <HBox fx:id="msgErroBox" styleClass="msg"  visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <ImageView GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.rowSpan="3">
+            <Image url="/br.com.app.kardex/icons/error.png"/>
+        </ImageView>
+        <Label fx:id="msgErro" text=""/>
+    </HBox>
+    <HBox styleClass="msg" fx:id="msgProgressBox" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <ProgressIndicator prefWidth="20" prefHeight="20" />
+        <Label fx:id="msgProgress" text="Validando Usuario e Senha..." />
+    </HBox>
+    <HBox styleClass="msg" fx:id="msgConfBoxDep" visible="false" spacing="10" alignment="CENTER"  GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <ImageView>
+            <Image url="/br.com.app.kardex/icons/Confirmado.png"/>
+        </ImageView>
+        <Label fx:id="msgConfDep" text="Abrindo formulario.." />
+    </HBox>
+    <stylesheets>
+        <URL value="@../../style/Estilo.css" />
+    </stylesheets>
+</GridPane>

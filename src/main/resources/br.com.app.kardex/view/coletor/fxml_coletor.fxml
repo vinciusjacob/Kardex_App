@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.app.kardex.controller.coletor.fxml_coletorController"
+            prefHeight="600.0" prefWidth="400.0">
+
+    <AnchorPane fx:id="boxMenu" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Button prefHeight="30" text="Recebimento" disable="true" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" />
+        <Button prefHeight="30" text="Expedição" disable="true" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="30"/>
+        <Button prefHeight="30" text="Inventario" onAction="#onInventario" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="60"/>
+    </AnchorPane>
+
+    <GridPane fx:id="boxInventario" alignment="CENTER" hgap="20" vgap="20" visible="false">
+        <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
+        <ComboBox fx:id="cbInventario" prefWidth="200" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+
+        <Label text="Posição" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtPosicao" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label text="Cod. Barras" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtCodBarras" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Label text="Cod. Fabrica" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <TextField fx:id="txtCodFabrica" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <Label text="Descrição" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="txtDescricao" GridPane.columnIndex="1" GridPane.rowIndex="4" editable="false"/>
+        <Label text="Qtd CX" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <TextField fx:id="txtQtdCx" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        <Label text="Vencimento" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+        <TextField fx:id="txtVencimento" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+        <Label text="Observação" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+        <TextField fx:id="txtObs" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+        <Button text="Gravar" GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="2"/>
+        <Button text="Cancelar" onAction="#onMenu" GridPane.columnIndex="0" GridPane.rowIndex="9" GridPane.columnSpan="2" />
+    </GridPane>
+
+
+    <GridPane hgap="20" styleClass="barra" alignment="BOTTOM_RIGHT" AnchorPane.bottomAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.leftAnchor="0">
+        <padding>
+            <Insets left="10" right="10" top="5" bottom="5" />
+        </padding>
+        <Label fx:id="usuario" text="" GridPane.columnIndex="0" GridPane.rowIndex="0"   />
+        <Label text="|" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="barraseparador"   />
+        <Label fx:id="bd"  text="" GridPane.columnIndex="2" GridPane.rowIndex="0"   />
+        <Label text="|" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="barraseparador"  />
+        <Label text="By Vinicius Jacob" GridPane.columnIndex="4" GridPane.rowIndex="0"   />
+    </GridPane>
+    <stylesheets>
+        <URL value="@../../style/Estilo.css" />
+    </stylesheets>
+</AnchorPane>

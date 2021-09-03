@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.app.kardex.controller.logistica.fxml_logisticaController" >
+    <top>
+        <MenuBar>
+            <menus>
+            <Menu text="Cadastro">
+                <items>
+                    <MenuItem onAction="#onPosicao" text="Posições" />
+                    <MenuItem disable="true" text="Departamento" />
+                    <MenuItem disable="true" text="Produtos" />
+                    <MenuItem disable="true" text="Veiculos" />
+                </items>
+            </Menu>
+            <Menu text="Movimento">
+                <items>
+                    <Menu text="Recebimento">
+                        <MenuItem onAction="#onRecebimento" text="Ordem de recebimento" />
+                        <MenuItem disable="true" onAction="#onRecebimentoAn" text="Recebimento analitico" />
+                    </Menu>
+                    <Menu text="Expedição">
+                        <MenuItem onAction="#onExpedicao" text="Carregamento" />
+                        <MenuItem onAction="#onCorte" text="Cortes" />
+                    </Menu>
+                    <Menu text="Estoque">
+                        <MenuItem onAction="#onEstoque" text="Saldo de Estoque" />
+                        <MenuItem disable="true" onAction="#onInventario" text="Inventario" />
+                    </Menu>
+                </items>
+            </Menu>
+            <Menu text="Avançado">
+                <items>
+                    <MenuItem disable="true" text="Usuarios   "/>
+                    <MenuItem disable="true" text="Sobre      "/>
+                    <MenuItem disable="true" text="Ajuda      " />
+                    <SeparatorMenuItem />
+                    <MenuItem onAction="#Logof"  text="Sair       " />
+                </items>
+            </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <TabPane fx:id="tabPane"  tabClosingPolicy="ALL_TABS" styleClass="tabPrincipal">
+
+        </TabPane>
+    </center>
+    <bottom>
+        <GridPane hgap="20" styleClass="barra" alignment="BOTTOM_RIGHT"   >
+            <padding>
+                <Insets left="10" right="10" top="5" bottom="5" />
+            </padding>
+            <Label fx:id="usuario"  text="" GridPane.columnIndex="0" GridPane.rowIndex="0"   /> 
+            <Label text="|" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="barraseparador"   />
+            <Label fx:id="data"  text="" GridPane.columnIndex="2" GridPane.rowIndex="0"   /> 
+            <Label text="|" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="barraseparador"  />
+            <Label fx:id="bd"  text="" GridPane.columnIndex="4" GridPane.rowIndex="0"   />
+            <Label text="|" GridPane.columnIndex="5" GridPane.rowIndex="0" styleClass="barraseparador"  />
+            <Label text="Desenvolvido por Vinicius Jacob" GridPane.columnIndex="6" GridPane.rowIndex="0"   /> 
+        </GridPane>
+    </bottom>
+    <stylesheets>
+       <URL value="@../../style/Estilo.css" />
+    </stylesheets>
+</BorderPane>

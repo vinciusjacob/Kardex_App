@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
+
+<BorderPane fx:id="pane" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.app.kardex.controller.logistica.fx_importacoesController">
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  styleClass="panel_menu"  >
+            <padding>
+                <Insets left="15" right="15" top="10" bottom="0" />
+            </padding>
+            <Button text="Atualizar" onAction="#Atualizar" GridPane.columnIndex="0" GridPane.rowIndex="0"  styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/atualizar.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="btnExcluir" text="Excluir" onAction="#Excluir"   disable="true" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="btn" >
+            <graphic>
+                <ImageView>
+                    <Image url="/br.com.app.kardex/icons/excluir.png"/>
+                </ImageView>
+            </graphic>
+            </Button>
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabela" >
+            <columns>
+                <TableColumn fx:id="colCod" text="Codigo" prefWidth="100" />
+                <TableColumn fx:id="colDescr" text="Descrição" prefWidth="300" />
+                <TableColumn fx:id="colDt" text="Data importação" prefWidth="150" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

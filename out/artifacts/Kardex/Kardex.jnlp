@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Kardex.jnlp">
+    <information>
+        <title>main</title>
+        <vendor>Unknown</vendor>
+        <description>main</description>
+        <offline-allowed/>
+    </information>
+    <update check="background"/>
+    <resources>
+        <j2se version="10.0.1+" href="http://java.sun.com/products/autodl/j2se"/>
+        <jar href="Kardex.jar" size="474473" download="eager"/>
+        <jar href="lib\commons-lang3-3.4.jar" size="434678" download="eager"/>
+        <jar href="lib\mssql-jdbc-7.0.0.jre10.jar" size="1178663" download="eager"/>
+    </resources>
+    <jfx:javafx-desc width="600" height="400" main-class="br.com.app.kardex.main" name="main"/>
+</jnlp>
+

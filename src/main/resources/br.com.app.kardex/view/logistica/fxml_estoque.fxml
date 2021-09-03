@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="pane" fx:controller="br.com.app.kardex.controller.logistica.fxml_estoqueController" >
+    <top>
+        <GridPane hgap="10" vgap="10" prefHeight="70"  styleClass="panel_menu" >
+            <padding>
+                <Insets left="15" right="15" top="10" bottom="0" />
+            </padding>
+
+            <Button fx:id="btnExportar" onAction="#saveExcel"  text="Exportar Excel" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan="2" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/microsoft-excel.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <ImageView GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.rowSpan="3">
+                <Image url="/br.com.app.kardex/icons/separador2.png"/>
+            </ImageView>
+
+            <Label text="Pesquisar:" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.halignment="RIGHT"/>
+            <TextField fx:id="txtPesquisar" GridPane.columnIndex="3" GridPane.rowIndex="0" prefWidth="150" GridPane.columnSpan="2" />
+
+            <Label text="Departamento:" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.halignment="RIGHT"/>
+            <ComboBox fx:id="cbCliente" GridPane.columnIndex="3" GridPane.rowIndex="1" prefWidth="150" />
+
+            <Button fx:id="btnAtualizar" onAction="#Atualizar"  text="Atualizar" GridPane.columnIndex="4" GridPane.rowIndex="1" styleClass="btn" >
+                <graphic>
+                    <ImageView>
+                        <Image url="/br.com.app.kardex/icons/atualizar.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Label styleClass="barraseparador" text="Filtros" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"   />
+
+        </GridPane>
+    </top>
+    <center>
+        <TableView fx:id="tabela">
+            <columns>
+                <TableColumn fx:id="colPosicao" text="Posicao" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="idposicao" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colCod" text="Codigo" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="idproduto" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Cod. Fabrica" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="codfabrica" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Descrição" prefWidth="250">
+                    <cellValueFactory><PropertyValueFactory property="descricao" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Unidade" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="unidade" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colFabricacao" text="Fabricação" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="dtfabricacao" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colVencimento" text="Vencimento" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="dtvencimento" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colQtdcx" text="Qtd CX" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="qtdcx" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colPeso" text="Peso" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="peso" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Avariado?" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="avariadoText" /></cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Observação" prefWidth="300">
+                    <cellValueFactory><PropertyValueFactory property="obs" /></cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        
+    </right>
+</BorderPane>
